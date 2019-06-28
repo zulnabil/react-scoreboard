@@ -58,7 +58,7 @@ function Timer(props) {
 
   const handleStop = () => {
     setRunning(false)
-    setCount(props.duration)
+    setCount(props.duration * 60) // reset duration
   }
 
   return (

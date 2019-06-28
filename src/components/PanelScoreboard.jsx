@@ -32,12 +32,12 @@ function PanelScoreboard(props) {
     },
   ]
 
-  const { scores } = props
+  const { teams } = props
   console.log(props.scores)
   return (
     <Container>
       <Panel>
-        {scores.map((team) => {
+        {teams.map((team) => {
           return (
             <Score team={team} />
           )

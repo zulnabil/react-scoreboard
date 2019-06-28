@@ -2,48 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 
 import PanelScoreboard from './PanelScoreboard'
+import InputTeam from './InputTeam'
 
 const PanelScore = styled.div`
   display: ${props => props.ready ? 'block' : 'none'}
 `
 
-const PanelInputTeam = styled.div`
-  display: ${props => props.ready ? 'none' : 'flex'}
-  flex-direction: column;
-  justify-content: space-around;
-`
-
 const Container = styled.div`
-  width: 400px;
   margin: auto;
   padding: 20px;
   text-align: center;
 `
 
 function ScoreBoard() {
-  const [scores, setScores] = React.useState([])
+  const [teams, setTeams] = React.useState([])
   const [ready, setReady] = React.useState(false)
-
-  const teamA = React.useRef()
-  const teamB = React.useRef()
-
-  const handleSubmit = () => {
-    setScores(
-      scores.concat(teamA.current.value, teamB.current.value)
-    )
-    setReady(true)
-  }
 
   return (
     <Container>
-      <PanelInputTeam ready={ready}>
-        <h3>Input your team</h3>
-        <input ref={teamA} type='text' placeholder='Team A' />
-        <input ref={teamB} type='text' placeholder='Team B' />
-        <button onClick={handleSubmit}>Submit</button>
-      </PanelInputTeam>
+      <InputTeam ready={ready} setReady={setReady} teams={teams} setTeams={setTeams} />
       <PanelScore ready={ready}>
-        <PanelScoreboard scores={scores} />
+        <PanelScoreboard teams={teams} />
       </PanelScore>
     </Container>
   )
